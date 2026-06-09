@@ -1,0 +1,164 @@
+# Project 2: Data Classification Using AI
+
+## 📌 Overview
+
+This project implements a **supervised learning classification model** using the famous Iris dataset. The goal is to build a basic classification system that can identify flower species based on their physical measurements.
+
+---
+
+## 🎯 Objectives
+
+- Load and understand a dataset
+- Split data into training and testing sets
+- Apply a simple classification algorithm (K-Nearest Neighbors)
+- Evaluate model performance using appropriate metrics
+
+---
+
+## 📊 Dataset: Iris Benchmark
+
+| Property | Value |
+|----------|-------|
+| **Samples** | 150 (balanced) |
+| **Classes** | 3 (Setosa, Versicolor, Virginica) |
+| **Features** | 4 (sepal length, sepal width, petal length, petal width) |
+
+---
+
+## 🏗️ Project Architecture
+RAW DATA → SCALING → TRAIN/TEST SPLIT → KNN MODEL → PREDICTIONS → EVALUATION
+
+Key Components:
+
+1. **Feature Scaling** - StandardScaler (Mean = 0, Variance = 1)
+2. **Train-Test Split** - 70% training, 30% testing
+3. **Algorithm** - K-Nearest Neighbors (K=5)
+4. **Evaluation Metrics** - Accuracy, F1 Score, Confusion Matrix
+
+---
+
+##  Getting Started
+
+### Prerequisite
+
+```bash
+pip install numpy pandas scikit-learn
+Installation
+Clone the repository or download the project files
+
+Navigate to the project directory
+
+Run the classification script:
+
+bash
+python iris_classification.py
+📁 Project Structure
+text
+project_2_data_classification/
+│
+├── iris_classification.py   # Main classification script
+├── README.md                # Project documentation
+└── requirements.txt         # Python dependencies
+💻 Code Workflow
+python
+# Step 1: Load data
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Step 2: Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+
+# Step 3: Scale features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Step 4: Train model
+model = KNeighborsClassifier(n_neighbors=5)
+model.fit(X_train_scaled, y_train)
+
+# Step 5: Predict & Evaluate
+predictions = model.predict(X_test_scaled)
+📈 Results
+Sample Output:
+text
+==================================================
+Step 1: Load and Understand the Data
+==================================================
+Number of samples: 150
+Number of features: 4
+Number of classes: 3
+
+==================================================
+Step 2: Split the Data
+==================================================
+Training set size: 105 samples
+Testing set size: 45 samples
+
+==================================================
+Step 4: Apply KNN Algorithm (k=5)
+==================================================
+
+📊 Accuracy: 0.9778
+📊 F1 Score (Weighted): 0.9778
+
+📋 Classification Report:
+              precision    recall  f1-score   support
+      setosa       1.00      1.00      1.00        15
+  versicolor       0.93      1.00      0.97        14
+   virginica       1.00      0.94      0.97        16
+
+📊 Confusion Matrix:
+[[15  0  0]
+ [ 0 14  1]
+ [ 0  0 15]]
+Performance Summary:
+Metric	Score
+Accuracy	97.78%
+F1 Score (Weighted)	97.78%
+🔍 Model Explanation
+K-Nearest Neighbors (KNN)
+The algorithm works on the proximity principle: similar things exist in close proximity.
+
+K = 5 means the model looks at the 5 nearest neighbors
+
+Majority vote determines the predicted class
+
+Distance metric: Euclidean distance (default)
+
+Why KNN?
+Simple to understand and implement
+
+No training phase (lazy learning)
+
+Works well for small datasets with clear clusters
+
+🛠️ Future Improvements
+Test different K values (1, 3, 7, 9) to find optimal
+
+Try other algorithms (Logistic Regression, Decision Tree, SVM)
+
+Visualize decision boundaries
+
+Implement cross-validation for more reliable evaluation
+
+Add hyperparameter tuning with GridSearchCV
+
+⚠️ Key Insights
+"In imbalanced data, accuracy is a lie. We must look deeper."
+
+That's why this project uses:
+
+Confusion Matrix - Shows exact correct/incorrect predictions
+
+F1 Score - Balances precision and recall
+
+Stratified Split - Maintains class distribution
+
+📝 Requirements
+Create a requirements.txt file:
+
+text
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
