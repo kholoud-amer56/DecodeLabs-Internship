@@ -7,15 +7,14 @@ Original file is located at
     https://colab.research.google.com/drive/1NSG8CSbw8bv6P2mUHQUZC7bAzxLy4ro5
 """
 
-# تثبيت المكتبات المطلوبة
 !pip install opencv-python pytesseract numpy matplotlib Pillow
 
-# تثبيت Tesseract OCR engine على نظام Linux (Google Colab)
+
 !apt-get update
 !apt-get install -y tesseract-ocr
 !apt-get install -y tesseract-ocr-ara  # للغة العربية (اختياري)
 
-# التحقق من التثبيت
+
 !tesseract --version
 
 """
